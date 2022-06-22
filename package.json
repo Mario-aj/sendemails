@@ -1,0 +1,13 @@
+{
+  "name": "sendemail",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "node src/index.js"
+  },
+  "dependencies": {
+    "handlebars": "^4.7.7",
+    "nodemailer": "^6.7.5"
+  }
+}
