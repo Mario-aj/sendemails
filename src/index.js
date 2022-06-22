@@ -1,11 +1,13 @@
+require("dotenv").config();
 const nodemailer = require("nodemailer");
 const handlebars = require("handlebars");
 const fs = require("fs");
 
 const user = {
-  email: "mariojorge1997@mail.ru",
-  password: "oDMySdDdTfcbQYFetX1S",
+  email: process.env.USER_EMAIL,
+  password: process.env.USER_PASSWORD,
 };
+
 const target = {
   email: "www.maurok@gmail.com",
   username: "FooBar",
