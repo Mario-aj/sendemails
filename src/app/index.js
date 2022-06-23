@@ -1,6 +1,6 @@
 require("dotenv").config();
 
-const { targets } = require("./target");
+const { getTargets } = require("./getTargets");
 const { transporter } = require("./nodemailer");
 const { readHTMLTemplate } = require("./readHtmlTemplate");
 
@@ -8,7 +8,8 @@ async function send() {
   readHTMLTemplate(__dirname + "/template.html", async (template) => {
     const sender = `"Mário Alfredo Jorge" ${process.env.USER_EMAIL}`;
     const subject = "Mensagem automática";
-    await targets?.forEach(async (target) => {
+    const targets = await getTargets();
+    targets.forEach(async (target) => {
       const html = template({ username: target?.username });
       await transporter
         .sendMail({
