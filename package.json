@@ -4,7 +4,7 @@
   "main": "src/index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "node src/index.js"
+    "send": "node src/index.js"
   },
   "dependencies": {
     "dotenv": "^16.0.1",
