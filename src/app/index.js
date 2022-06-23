@@ -4,6 +4,9 @@ const { getTargets } = require("./getTargets");
 const { transporter } = require("./nodemailer");
 const { readHTMLTemplate } = require("./readHtmlTemplate");
 
+const CV_PATH =
+  "/home/mario-aj/Documents/Mario_Alfredo_Jorge_Software_Developer.pdf";
+
 async function send() {
   readHTMLTemplate(__dirname + "/template.html", async (template) => {
     const sender = `"Mário Alfredo Jorge" ${process.env.USER_EMAIL}`;
@@ -18,6 +21,7 @@ async function send() {
           subject: target?.subject || subject,
           text: "Hey!",
           html,
+          attachments: [{ path: CV_PATH }],
         })
         .then(() => console.log("Email sent to: " + target?.email))
         .catch((error) =>
