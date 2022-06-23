@@ -1,12 +1,8 @@
 require("dotenv").config();
 
+const { target } = require("./target");
 const { transporter } = require("./nodemailer");
 const { readHTMLTemplate } = require("./readHtmlTemplate");
-
-const target = {
-  email: "www.maurok@gmail.com",
-  username: "FooBar",
-};
 
 async function main() {
   readHTMLTemplate(__dirname + "/template.html", async (template) => {
