@@ -1,8 +1,7 @@
 require("dotenv").config();
-const handlebars = require("handlebars");
-const fs = require("fs");
 
 const { transport } = require("./nodemailer");
+const { readHTMLTemplate } = require("./readHtmlTemplate");
 
 const user = {
   email: process.env.USER_EMAIL,
@@ -15,17 +14,6 @@ const target = {
   username: "FooBar",
 };
 
-const readHTMLFile = function (path, callback) {
-  fs.readFile(path, { encoding: "utf-8" }, function (err, html) {
-    if (err) {
-      throw err;
-    } else {
-      const template = handlebars.compile(html);
-      callback(template);
-    }
-  });
-};
-
 async function main() {
   let transporter = transport({
     host: "smtp.mail.ru",
@@ -34,7 +22,7 @@ async function main() {
     user,
   });
 
-  readHTMLFile(__dirname + "/template.html", async (template) => {
+  readHTMLTemplate(__dirname + "/template.html", async (template) => {
     const html = template({ username: target.username });
     await transporter.sendMail({
       from: user.sender,
