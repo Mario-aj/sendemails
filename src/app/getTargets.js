@@ -2,6 +2,7 @@ const fs = require("fs");
 
 async function getTargets() {
   const data = fs.readFileSync(__dirname + "/targets.txt", "utf8");
+  if (!data) return [];
 
   const targets = data.split("\n")?.map((line) => {
     let [email, subject] = line.split(" ");
@@ -13,7 +14,7 @@ async function getTargets() {
     return { email, subject, username };
   });
 
-  return targets || [];
+  return targets;
 }
 
 module.exports = { getTargets };

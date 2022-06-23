@@ -12,6 +12,12 @@ async function send() {
     const sender = `"Mário Alfredo Jorge" ${process.env.USER_EMAIL}`;
     const subject = "Mensagem automática";
     const targets = await getTargets();
+
+    if (targets) {
+      console.error("No destination email found");
+      return;
+    }
+
     targets.forEach(async (target) => {
       const html = template({ username: target?.username });
       await transporter
