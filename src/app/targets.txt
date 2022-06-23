@@ -1,3 +1,2 @@
-www.maurok@gmail.com Vaga_De_Programador_FullStack_Java
-mariojorge1997@outlook.com Programador_React_Native
-jmario@seasoned.cc Programador_Reactjs
+www.maurok@gmail.com Programador_FullStack_Java
+mariojorge1997@outlook.com Programador_Reactjs
