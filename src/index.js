@@ -1,11 +1,13 @@
 require("dotenv").config();
-const nodemailer = require("nodemailer");
 const handlebars = require("handlebars");
 const fs = require("fs");
+
+const { transport } = require("./nodemailer");
 
 const user = {
   email: process.env.USER_EMAIL,
   password: process.env.USER_PASSWORD,
+  sender: `"Mário Alfredo Jorge" ${process.env.USER_EMAIL}`,
 };
 
 const target = {
@@ -25,28 +27,24 @@ const readHTMLFile = function (path, callback) {
 };
 
 async function main() {
-  let transporter = nodemailer.createTransport({
+  let transporter = transport({
     host: "smtp.mail.ru",
     port: 465,
     secure: true,
-    replyTo: user.email,
-    auth: {
-      user: user.email,
-      pass: user.password,
-    },
+    user,
   });
 
   readHTMLFile(__dirname + "/template.html", async (template) => {
     const html = template({ username: target.username });
     await transporter.sendMail({
-      from: `"Mário Alfredo Jorge" ${user.email}`,
+      from: user.sender,
       to: `${target.email}`,
       subject: "Frontend developer",
       text: "Hey!",
       html,
     });
 
-    console.log("Message sent");
+    console.log("Email sent to: " + target.email);
   });
 }
 
