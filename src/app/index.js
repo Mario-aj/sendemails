@@ -13,7 +13,7 @@ async function send() {
     const subject = "Mensagem automática";
     const targets = await getTargets();
 
-    if (targets) {
+    if (!targets) {
       console.error("No destination email found");
       return;
     }
