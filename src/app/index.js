@@ -29,7 +29,7 @@ async function send() {
           html,
           attachments: [{ path: CV_PATH }],
         })
-        .then(() => console.log("Email sent to: " + target?.email))
+        .then((res) => console.log("Email sent to: " + res))
         .catch((error) =>
           console.error(
             "We have a problem to send email to " + target?.email + ": ",
